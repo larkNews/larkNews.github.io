@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>time</title>
+</head>
+<body>
+<script type="text/javascript">
+	"use strict";
+	(function(){
+		function crossRequest(url,method,async,callback,data) {
+		var xhr = new XMLHttpRequest();
+		async=async==true?async:false;
+		xhr.open(method,url,async);
+		// xhr.withCredentials = true;
+		// xhr.setRequestHeader("Access-Control-Allow-Origin", "/");
+		xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		console.log(data)
+
+		xhr.send(data);
+		// debugger;
+		if(xhr.readyState==4){
+			// debugger
+			callback(xhr.responseText);
+		}
+
+	}
+	var url="https://api.bootcdn.cn/libraries/twitter-bootstrap.min.json"
+	// url="https://www.bootcdn.cn/api"
+	// crossRequest(url,"GET",false,function(data) {
+	// 	// url="https://api.bootcdn.cn/libraries/twitter-bootstrap.min.json"
+	// 	var a=document.createElement("a")
+	// 	var blob = new Blob([data])
+	// 	a.href=webkitURL.createObjectURL(blob)
+	// 	a.download=url.substring(url.lastIndexOf("/")+1)
+	// 	a.click()
+	// });
+	// document.domain="baidu.com";
+	var dt="q=Why%20US%20businesses%20should%20worry%20about%20China%E2%80%99s%20corporate%20social%20credit%20system%0A%20%20%20%20%20%20%20%20%20%20%20%20"
+	crossRequest("https://translate.googleapis.com/translate_a/t?anno=3&client=te_lib&format=html&v=1.0&key=AIzaSyBOti4mM-6x9WDnZIjIeyEU21OpBXqWBgw&logld=vTE_20190916_00&sl=en&tl=zh-CN&sp=nmt&tc=1&sr=1&mode=1","POST",false,function(data){
+		console.log(data);
+	},dt)
+	})()
+	
+</script>
+</body>
+</html>
