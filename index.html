@@ -41,7 +41,7 @@
 			}
 			strs=strs+"#"
 		}
-		document.getElementById('content').innerHTML=str.slice(0,-1);
+		document.getElementById('content').innerHTML=strs.slice(0,-1);
 		// crossRequest("https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=zh-CN&hl=zh-CN&dt=t&dt=bd&dj=1&source=icon&q="+dt,"GET",false,function(data){
 		// 	var arr=JSON.parse(data).sentences;
 		// 	var str=""
