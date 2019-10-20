@@ -28,7 +28,7 @@
 		for (var i = 0; i < dts.length; i++) {
 			if (dts[i]) {
 				dt =encodeURI(dts[i])
-				crossRequest("https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=zh-CN&hl=zh-CN&dt=t&dt=bd&dj=1&source=icon&q="+dt,"GET",false,function(data){
+				crossRequest("https://translate.googleapis.com/translate_a/single?client=gtx&format=html&sl=auto&tl=zh-CN&hl=zh-CN&dt=t&dt=bd&dj=1&source=icon&q="+dt,"GET",false,function(data){
 					var arr=JSON.parse(data).sentences;
 					var str=""
 					for (var i = 0; i < arr.length; i++) {
