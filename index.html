@@ -27,7 +27,7 @@
 		var strs=""
 		for (var i = 0; i < dts.length; i++) {
 			if (dts[i]) {
-				dt =encodeURI(dts[i])
+				dt ="q="+encodeURI(dts[i])
 				crossRequest("https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=zh-CN&hl=zh-CN&dt=t&dt=bd&dj=1&source=icon&q="+dt,"GET",false,function(data){
 					var arr=JSON.parse(data).sentences;
 					var str=""
