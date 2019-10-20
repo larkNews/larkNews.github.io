@@ -22,15 +22,34 @@
 	}
 	document.getElementById("input").onchange=function(){
 		var dt = document.getElementById("input").value
-		dt =encodeURI(dt)
-		crossRequest("https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=zh-CN&hl=zh-CN&dt=t&dt=bd&dj=1&source=icon&q="+dt,"GET",false,function(data){
-			var arr=JSON.parse(data).sentences;
-			var str=""
-			for (var i = 0; i < arr.length; i++) {
-				str+=arr[i].trans
+		var dts=dt.split("#")
+		// dt =encodeURI(dt)
+		var strs=""
+		for (var i = 0; i < dts.length; i++) {
+			if (dts[i]) {
+				dt =encodeURI(dts[i])
+				crossRequest("https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=zh-CN&hl=zh-CN&dt=t&dt=bd&dj=1&source=icon&q="+dt,"GET",false,function(data){
+					var arr=JSON.parse(data).sentences;
+					var str=""
+					for (var i = 0; i < arr.length; i++) {
+						str+=arr[i].trans
+					}
+					strs=strs+str
+					// var v=document.getElementById('content').innerHTML
+					// document.getElementById('content').innerHTML=v+str;
+				})
 			}
-			document.getElementById('content').innerHTML=str;
-		})	
+			strs=strs+"#"
+		}
+		document.getElementById('content').innerHTML=str.slice(0,-1);
+		// crossRequest("https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=zh-CN&hl=zh-CN&dt=t&dt=bd&dj=1&source=icon&q="+dt,"GET",false,function(data){
+		// 	var arr=JSON.parse(data).sentences;
+		// 	var str=""
+		// 	for (var i = 0; i < arr.length; i++) {
+		// 		str+=arr[i].trans
+		// 	}
+		// 	document.getElementById('content').innerHTML=str;
+		// })	
 	}
 
 	})()
