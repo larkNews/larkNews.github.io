@@ -41,7 +41,7 @@
 	var t=new Date();
 	var tk=t.getTime();
 	var dt="q=Why%20US%20businesses%20should%20worry%20about%20China%E2%80%99s%20corporate%20social%20credit%20system%0A%20%20%20%20%20%20%20%20%20%20%20%20"
-	crossRequest("https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=zh-CN&hl=zh-CN&dt=t&dt=bd&dj=1&source=icon&q="+dt,"GET",false,function(data){
+	crossRequest("https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=zh-CN&hl=zh-CN&dt=t&dt=bd&dj=1&source=icon&"+dt,"GET",false,function(data){
 		console.log(data);
 	})
 	})()
