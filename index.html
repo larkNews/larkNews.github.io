@@ -4,6 +4,8 @@
 	<title>time</title>
 </head>
 <body>
+		<textarea id="input" cols="50" rows="10">text</textarea>
+	<div id="content"></div>
 <script type="text/javascript">
 	"use strict";
 	(function(){
@@ -11,36 +13,21 @@
 		var xhr = new XMLHttpRequest();
 		async=async==true?async:false;
 		xhr.open(method,url,async);
-		// xhr.withCredentials = true;
-		// xhr.setRequestHeader("Access-Control-Allow-Origin", "/");
-		xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-		console.log(data)
-
+		// xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 		xhr.send(data);
-		// debugger;
 		if(xhr.readyState==4){
-			// debugger
 			callback(xhr.responseText);
 		}
 
 	}
-	var url="https://api.bootcdn.cn/libraries/twitter-bootstrap.min.json"
-	// url="https://www.bootcdn.cn/api"
-	// crossRequest(url,"GET",false,function(data) {
-	// 	// url="https://api.bootcdn.cn/libraries/twitter-bootstrap.min.json"
-	// 	var a=document.createElement("a")
-	// 	var blob = new Blob([data])
-	// 	a.href=webkitURL.createObjectURL(blob)
-	// 	a.download=url.substring(url.lastIndexOf("/")+1)
-	// 	a.click()
-	// });
-	// document.domain="baidu.com";
-	var t=new Date();
-	var tk=t.getTime();
-	var dt="q=Why%20US%20businesses%20should%20worry%20about%20China%E2%80%99s%20corporate%20social%20credit%20system%0A%20%20%20%20%20%20%20%20%20%20%20%20"
-	crossRequest("https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=zh-CN&hl=zh-CN&dt=t&dt=bd&dj=1&source=icon&"+dt,"GET",false,function(data){
-		console.log(data);
-	})
+	var dt = document.getElementById("input").value
+	document.getElementById("input").onchange=function(){
+		dt = document.getElementById("input").value
+		crossRequest("https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=zh-CN&hl=zh-CN&dt=t&dt=bd&dj=1&source=icon&q="+dt,"GET",false,function(data){
+			document.getElementById('content').innerHTML=JSON.parse(data).sentences[0].trans;
+		})	
+	}
+
 	})()
 	
 </script>
